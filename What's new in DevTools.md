@@ -110,5 +110,10 @@ WebAssembly를 위한 기능으로는 부족한 점이 많다.
 
 
 ## 참고
-- [RAIL 모델로 성능 측정](https://web.dev/rail/#goals-and-guidelines)
 - [웹어셈블리의 컨셉](https://developer.mozilla.org/ko/docs/WebAssembly/Concepts)
+- 살펴봐야함.
+  - [Total Blocking Time](https://web.dev/tbt/?utm_source=devtools)
+  - [RAIL 모델로 성능 측정](https://web.dev/rail/#goals-and-guidelines)
+  - [https://web.dev/cls/?utm_source=devtools](https://web.dev/cls/?utm_source=devtools)
+  - 웹 어셈블리 간단한 테스트 가능한지
+  - [https://d2.naver.com/helloworld/8786166](https://d2.naver.com/helloworld/8786166)
