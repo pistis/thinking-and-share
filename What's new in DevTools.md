@@ -117,3 +117,4 @@ WebAssembly를 위한 기능으로는 부족한 점이 많다.
   - [https://web.dev/cls/?utm_source=devtools](https://web.dev/cls/?utm_source=devtools)
   - 웹 어셈블리 간단한 테스트 가능한지
   - [https://d2.naver.com/helloworld/8786166](https://d2.naver.com/helloworld/8786166)
+  - [https://developers.google.com/web/updates/2020/05/devtools](https://developers.google.com/web/updates/2020/05/devtools) Chrome 업데이트 내용 확인
