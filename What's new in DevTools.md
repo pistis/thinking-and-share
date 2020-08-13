@@ -1,5 +1,6 @@
 
   
+  
 # What’s new in DevTools
 > 이 문서는 '[2020 web.dev LIVE Day 2 Session - What's new in DevTools](https://www.youtube.com/watch?v=6yrJZHqJe2k&list=PLNYkxOF6rcIBhuGsbO6t8-OBE5-fVPe7K&index=3&t=0s)' 영상의 내용을 정리한 문서입니다.
 
@@ -66,41 +67,54 @@ layout shifting metric을 제공하게된 이유는 그것 때문이다.
 > 일반적인 방법으로는 스타일에서 컨텐츠를 위한 공간을 미리 예약하여 다른 컨텐츠를 이동하기 위해 컨텐츠를 떠나지 않도록 하는 것이다.(때로는 불가능하다.)
 
 
-
 ### WebAssembly
+**Improved WebAssembly debugging**  
+
 WebAssembly는 C/C++ 언어등으로 작성된 코드를 컴파일(소스 언어 -> VM byte code로 변환)하여 브라우저의 VM에서 실행해주는 기술이다.  
 
-디버깅 할 때 컴파일 전의 사람이 이해할 수 있는 코드를 보며 디버깅 하기를 원한다.  
-그것을 위해 오랫동안 source maps을 사용하여 컴파일된 WebAssembly 바이너리 코드에서 원본 소스코드로의 매핑을 정의했다.  
+개발자는 디버깅 할 때 컴파일 전의 사람이 이해할 수 있는 코드를 보며 디버깅 하기를 원한다.  
 
-다만, source maps는 javascript, minifiers, transfiler를 위해 만들어졌다.  
-WebAssembly를 위한 기능으로는 부족한 점이 많다.  
+**1. 최초 디버깅**  
+작고 독립적인 모듈을 디버깅하기에는 크게 무리는 없으나 조금만 규모가 커져도 매우 불편한 것을 알 수 있다.
+![최초 디버깅](https://developers.google.com/web/updates/images/2019/12/raw.png)
 
-이번에 DevTools에서 DWARF를 지원하게 되면서 원본 소스코드 파일에 대한 매핑을 제공한다.  
-- 원본 C 코드에서 중단점을 설정하고 디버깅이 가능하다.
+
+**2. sourcemaps 지원**  
+이후 [sourcemaps](https://www.html5rocks.com/en/tutorials/developertools/sourcemaps/)을 사용하여 컴파일된 WebAssembly 바이너리 코드에서 원본 소스코드로의 매핑을 정의했다.  
+다만, sourcemaps는 javascript, minifiers, transfiler를 위해 만들어졌던 기술이기에 WebAssembly를 위한 기능으로는 부족한 점이 많았다.  
+![source maps](https://developers.google.com/web/updates/images/2019/12/sourcemaps.png)
+
+
+**3. DWARF 디버깅 표준 지원**  
+이제 DevTools는 DWARF 디버깅 표준을 지원하기 시작했습니다.  
+즉, DevTools 내에서
+- 원본 소스코드에서 중단점을 설정하고 디버깅이 가능하다.
 - 디버깅 중 변수위에 마우스 오버를 통해 변수의 값을 확인 할 수 있어 효율적인 디버깅이 가능하다. (source maps로는 미지원)
 - 디버깅 중에 기본 컴파일러를 사용하므로 sources map와 비교시 더욱 빠른 실행 경험을 제공한다.
+![DWARF](https://developers.google.com/web/updates/images/2019/12/dwarf.png)
 
 
-### Issue Tab - 여기서부터
-- 예제 
-	- same site
-		- https://samesite-sandbox.glitch.me
-	- mixed contents
-		- googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/passive-mixed-content.html
-- 페이지를 실행하는 동안 문제가 발견되었을 때 제공
-	- 문제를 해결할 수 있는 방법에 대한 설명 제공
-	- mixed contents, same site cookie 등
-- console tab에 지저분한 것들을 제거
+### Issue Tab
+웹 페이지를 실행하는 동안 문제가 발견되면 해결할 수 있는 방법에 대한 설명을 제공한다.  
+
+[same site](https://samesite-sandbox.glitch.me)  
+![Issues Tab](https://user-images.githubusercontent.com/4979560/90163415-07fac600-ddd1-11ea-900f-d2df22d56d30.png)
+
+
+
+[mixed contents](https://googlesamples.github.io/web-fundamentals/fundamentals/security/prevent-mixed-content/passive-mixed-content.html)  
+![MixedContents](https://user-images.githubusercontent.com/4979560/90163851-9d965580-ddd1-11ea-9a95-06f2bc697954.png)
 
 
 ### Rendering Tab - Emulate vision deficiencies(시력 결함 모방)
-- 예제
-	- [https://www.youtube.com/watch?v=VNr1Kb07aME](https://www.youtube.com/watch?v=VNr1Kb07aME)
-- 상호작용, 애니메이션/비디오를 비활성화하지 않고 페이지에 적용
+[Imposter Syndrome - HTTP203 Example 영상](https://www.youtube.com/watch?v=VNr1Kb07aME)  
+**Blurred vision**  
+![rendering tab](https://user-images.githubusercontent.com/4979560/90164089-ea7a2c00-ddd1-11ea-9b6e-c7d223e4a45d.png)
+
+- 상호작용, 애니메이션/비디오를 비활성화하지 않고 페이지에 적용된다.
 - 시각 장애를 가지고 있는 사용자에게  어떤 경험을 주는지 실제로 확인할 수 있다.
-- 생리적으로 정확하지만 특정 시력 결함의 가장 심각한 형태를 모방한다.
-- 종류
+- 생리적으로 정확하면서도 특정 시력 결함의 가장 심각한 형태를 모방한다.
+- 제공되는 옵션 종류
 	- Blurred vision(흐린 시야)
 	- Protanopia (제 1색맹, 적색맹)
 	- Deuteranopia (제 2색맹, 녹색맹)
@@ -110,11 +124,17 @@ WebAssembly를 위한 기능으로는 부족한 점이 많다.
 
 
 ## 참고
+- 기능의 Chrome version
+	- Chrome 84 (2020.7)
+		- View Total Blocking Time (TBT) information in the footer
+		- Layout Shift events in the new Experience section
+		- Fix site issues with the new Issues tab
+			- [Cookie problems](https://web.dev/samesite-cookies-explained)
+			- [Mixed content](https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content)
+			- [COEP issues](https://web.dev/coop-coep/)
+	- Chrome 83 (2020.5)
+		- Emulate vision deficiencies
+	- Chrome 80 (2019.12)
+		- [Improved WebAssembly debugging](http://dwarfstd.org/)
 - [웹어셈블리의 컨셉](https://developer.mozilla.org/ko/docs/WebAssembly/Concepts)
-- 살펴봐야함.
-  - [Total Blocking Time](https://web.dev/tbt/?utm_source=devtools)
-  - [RAIL 모델로 성능 측정](https://web.dev/rail/#goals-and-guidelines)
-  - [https://web.dev/cls/?utm_source=devtools](https://web.dev/cls/?utm_source=devtools)
-  - 웹 어셈블리 간단한 테스트 가능한지
-  - [https://d2.naver.com/helloworld/8786166](https://d2.naver.com/helloworld/8786166)
-  - [https://developers.google.com/web/updates/2020/05/devtools](https://developers.google.com/web/updates/2020/05/devtools) Chrome 업데이트 내용 확인
+- [Improved WebAssembly debugging in Chrome DevTools](https://developers.google.com/web/updates/2019/12/webassembly)
