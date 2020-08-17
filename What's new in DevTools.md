@@ -47,9 +47,9 @@ touch, mouse event handler등의 사용자가 실행하는 대부분의 task들�
 다만 최초 로딩시에는 사용자가 웹사이트와 상호작용할 것으로는 기대하지 않기 때문에 좀 더 관대할 수는 있다.  
 
 >  Main thread가 차단 된것을 나타내는 metric이 [TBT(Total Blocking Time)](https://web.dev/tbt/?utm_source=devtools)이다.
-> 다만 이시간이 반드시 Main thread가 차단된 시간은 아니다.
-> 작업당 50ms정도까지는 메인쓰레드가 차단 되는 정도는 아니다. 
-> 초과된 모든 것은 총 차단 시간에 포함된다. (50ms를 초과한 시간)
+> 다만 이시간이 반드시 Main thread가 차단된 시간은 아니다.  
+> 작업당 50ms정도까지는 메인쓰레드가 차단 되는 정도는 아니다.   
+> 초과된 모든 것은 총 차단 시간에 포함된다. (50ms를 초과한 시간)  
 > ![TBT](https://user-images.githubusercontent.com/4979560/90044064-0fa26800-dd08-11ea-9c81-7780c1ccb751.jpg)
 
 
@@ -64,10 +64,10 @@ Experience Track의 Layout Shift를 클릭하면 하단에 Summary에 정보가 
 대부분의 사람들은 웹을 탐색하다가 버튼을 탭하려고 하는데 화면의 다른곳으로 이동하게 되는 경우를 경험 했을것이다.   
 layout shifting metric을 제공하게된 이유는 그것 때문이다.  
 
-> 레이아웃 변경은 UX 문제를 유발하며 이를 제거해야 한다.
-> 일반적인 방법으로는 스타일에서 컨텐츠를 위한 공간을 미리 예약하여 다른 컨텐츠를 이동하기 위해 컨텐츠를 떠나지 않도록 하는 것이다.(때로는 불가능하다.)
-> **layout shifting metric은 Core Web Vitals중 시각적 안정성에 관련된 metric 이다.**
-> CLS가 무엇이고 어떻게 최적화 할 수 있는지에 대한 자세한 내용은 [Core Web Vitals](https://www.youtube.com/watch?v=AQqFZ5t8uNc&list=PLNYkxOF6rcIDC0-BiwSL52yQ0n9rNozaF&index=4&t=0s) 영상에서 확인하자.
+> 레이아웃 변경은 UX 문제를 유발하며 이를 제거해야 한다.  
+> 일반적인 방법으로는 스타일에서 컨텐츠를 위한 공간을 미리 예약하여 다른 컨텐츠를 이동하기 위해 컨텐츠를 떠나지 않도록 하는 것이다.(때로는 불가능하다.)  
+> **layout shifting metric은 Core Web Vitals중 시각적 안정성에 관련된 metric 이다.**  
+> CLS가 무엇이고 어떻게 최적화 할 수 있는지에 대한 자세한 내용은 [Core Web Vitals](https://www.youtube.com/watch?v=AQqFZ5t8uNc&list=PLNYkxOF6rcIDC0-BiwSL52yQ0n9rNozaF&index=4&t=0s) 영상에서 확인하자.  
 
 
 ### WebAssembly
